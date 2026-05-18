@@ -84,7 +84,7 @@ body {
 
 .flow-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(348px, 380px);
+  grid-template-columns: minmax(300px, 1fr) minmax(328px, 355px);
   gap: 64px;
   align-items: center;
 }

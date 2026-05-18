@@ -12,7 +12,7 @@ type ChatMsg  = TextMsg | AudioMsg | ImageMsg
 // ── Data ───────────────────────────────────────────────────────────────────────
 const NODES = [
   { id: 1, emoji: '👤', title: 'Potencial cliente',        desc: 'Escribe al WhatsApp del estudio en cualquier momento. No importa si es domingo a la medianoche.', highlight: false },
-  { id: 2, emoji: '⚡', title: 'Agente VantAr',            desc: 'Responde al instante. Hace las preguntas exactas según el tipo de caso y el estilo del estudio.', highlight: true  },
+  { id: 2, emoji: '',   title: 'Agente VantAr',            desc: 'Responde al instante. Hace las preguntas exactas según el tipo de caso y el estilo del estudio.', highlight: true  },
   { id: 3, emoji: '⚙️', title: 'Procesamiento automático', desc: 'Organiza y estructura toda la información. Clasifica el caso, evalúa la urgencia.',            highlight: false },
   { id: 4, emoji: '💼', title: 'El abogado',               desc: 'Recibe un resumen claro y completo. Llega a la reunión preparado, sin perder tiempo.',          highlight: false },
 ]
@@ -46,7 +46,7 @@ const KB_ROW3 = ['Z','X','C','V','B','N','M']
 // ── Shared atoms ───────────────────────────────────────────────────────────────
 function FlowConnector({ delay }: { delay: number }) {
   return (
-    <div style={{ position: 'relative', marginLeft: '25px', width: '2px', height: '52px', background: 'rgba(0,180,204,0.18)' }}>
+    <div style={{ position: 'relative', marginLeft: '25px', width: '6px', height: '52px', background: 'rgba(0,180,204,0.18)', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', left: '-2px', width: '6px', height: '18px', background: 'linear-gradient(to bottom, transparent, #00B4CC 50%, transparent)', borderRadius: '3px', animation: `flow-particle 1.8s ease-in-out ${delay}s infinite` }} />
       <div style={{ position: 'absolute', left: '-2px', width: '6px', height: '18px', background: 'linear-gradient(to bottom, transparent, #00B4CC 50%, transparent)', borderRadius: '3px', animation: `flow-particle 1.8s ease-in-out ${delay + 0.9}s infinite` }} />
     </div>
@@ -75,7 +75,7 @@ function VirtualKeyboard({ activeKey }: { activeKey: string }) {
   const ak = activeKey.toUpperCase()
   const row = { display: 'flex', gap: '5px', marginBottom: '6px' }
   return (
-    <div style={{ background: '#CDD2D9', padding: '8px 4px 0' }}>
+    <div style={{ background: '#CDD2D9', padding: '8px 4px 0', flexShrink: 0 }}>
       <div style={row}>{KB_ROW1.map(k => <KbKey key={k} label={k} active={ak === k} />)}</div>
       <div style={{ ...row, paddingLeft: '3.5%', paddingRight: '3.5%' }}>{KB_ROW2.map(k => <KbKey key={k} label={k} active={ak === k} />)}</div>
       <div style={row}>
@@ -293,9 +293,9 @@ function ChatSimulator() {
   }, [visibleCount, isAgentTyping])
 
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
       {/* WA Header */}
-      <div style={{ background: '#128C7E', padding: '11px 14px 11px 6px', display: 'flex', alignItems: 'center', gap: '2px' }}>
+      <div style={{ background: '#128C7E', padding: '11px 14px 11px 6px', display: 'flex', alignItems: 'center', gap: '2px', flexShrink: 0 }}>
         <div style={{ padding: '4px 6px', color: 'rgba(255,255,255,0.85)', flexShrink: 0 }}>
           <svg width="10" height="17" viewBox="0 0 10 17" fill="none">
             <path d="M9 1.5L1.5 8.5L9 15.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -317,8 +317,8 @@ function ChatSimulator() {
         </div>
       </div>
 
-      {/* Messages */}
-      <div ref={messagesRef} style={{ height: '262px', overflowY: 'auto', padding: '10px 8px', display: 'flex', flexDirection: 'column', gap: '4px', background: '#ECE5DD', scrollbarWidth: 'none' }}>
+      {/* Messages — flex:1 absorbs any height changes in siblings */}
+      <div ref={messagesRef} style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '10px 8px', display: 'flex', flexDirection: 'column', gap: '4px', background: '#ECE5DD', scrollbarWidth: 'none' }}>
         {CHAT.slice(0, visibleCount).map((msg, i) => {
           if (msg.type === 'audio') return <AudioBubble key={i} msg={msg} />
           if (msg.type === 'image') return <ImageBubble key={i} msg={msg} />
@@ -346,53 +346,54 @@ function ChatSimulator() {
         )}
       </div>
 
-      {/* Input bar */}
-      <div style={{ background: '#F0F0F0', padding: '7px 8px', display: 'flex', alignItems: 'center', gap: '7px' }}>
-        <div style={{ color: '#8696A0', flexShrink: 0 }}>
+      {/* Input bar — flex-end aligns icons to bottom when input grows to 2 lines */}
+      <div style={{ background: '#F0F0F0', padding: '7px 8px', display: 'flex', alignItems: 'flex-end', gap: '7px', flexShrink: 0 }}>
+        <div style={{ color: '#8696A0', flexShrink: 0, paddingBottom: '6px' }}>
           <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5 14.67 11 15.5 11zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
         </div>
-        <div style={{ flex: 1, background: '#FFF', borderRadius: '22px', padding: '9px 14px', minHeight: '38px', display: 'flex', alignItems: 'center' }}>
-          <span style={{ fontFamily: '-apple-system, sans-serif', fontSize: '14px', color: inputText ? '#111' : '#9EA5AE', lineHeight: 1.3 }}>
+        {/* Input pill — grows to 2 lines when text wraps */}
+        <div style={{ flex: 1, background: '#FFF', borderRadius: '19px', padding: '9px 14px', minHeight: '38px', maxHeight: '64px', overflowY: 'hidden', lineHeight: '20px' }}>
+          <span style={{ fontFamily: '-apple-system, sans-serif', fontSize: '14px', color: inputText ? '#111' : '#9EA5AE', wordBreak: 'break-word' }}>
             {inputText || 'Mensaje'}
+            {isClientTyping && (
+              <span style={{ display: 'inline-block', width: '2px', height: '15px', background: '#00B4CC', marginLeft: '1px', verticalAlign: 'text-bottom', animation: 'cursor-blink 1s step-end infinite' }} />
+            )}
           </span>
-          {isClientTyping && (
-            <span style={{ display: 'inline-block', width: '2px', height: '15px', background: '#00B4CC', marginLeft: '1px', verticalAlign: 'middle', animation: 'cursor-blink 1s step-end infinite' }} />
-          )}
         </div>
         {inputText ? (
-          <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#128C7E', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ width: '38px', height: '38px', borderRadius: '50%', background: '#128C7E', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           </div>
         ) : (
-          <div style={{ color: '#8696A0', flexShrink: 0 }}>
-            <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+          <div style={{ color: '#8696A0', flexShrink: 0, paddingBottom: '6px' }}>
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor"><path d="M20 5h-2.83L15 3H9L6.83 5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H4V7h3.05L9.17 5h5.66l2.12 2H20v12zM12 8c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/></svg>
           </div>
         )}
       </div>
 
       <VirtualKeyboard activeKey={activeKey} />
-    </>
+    </div>
   )
 }
 
 // ── iPhone 17 Frame ────────────────────────────────────────────────────────────
 function IPhoneFrame({ children }: { children: ReactNode }) {
   return (
-    <div style={{ position: 'relative', width: '352px', margin: '0 auto' }}>
-      {/* Action button */}
-      <div style={{ position: 'absolute', width: '4px', height: '32px', top: '108px', left: '-4px', background: 'linear-gradient(90deg,#141414,#303030)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 3px rgba(0,0,0,0.6)' }} />
+    <div style={{ position: 'relative', width: '328px', margin: '0 auto' }}>
+      {/* Action button — liquid glass */}
+      <div style={{ position: 'absolute', width: '4px', height: '32px', top: '108px', left: '-4px', background: 'linear-gradient(180deg,rgba(130,130,130,0.85) 0%,rgba(70,70,70,0.75) 100%)', borderRadius: '3px 0 0 3px', border: '0.5px solid rgba(255,255,255,0.2)', borderRight: 'none', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.2), -2px 0 8px rgba(0,0,0,0.5)' }} />
       {/* Volume Up */}
-      <div style={{ position: 'absolute', width: '4px', height: '62px', top: '158px', left: '-4px', background: 'linear-gradient(90deg,#141414,#303030)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 3px rgba(0,0,0,0.6)' }} />
+      <div style={{ position: 'absolute', width: '4px', height: '62px', top: '158px', left: '-4px', background: 'linear-gradient(180deg,rgba(130,130,130,0.85) 0%,rgba(70,70,70,0.75) 100%)', borderRadius: '3px 0 0 3px', border: '0.5px solid rgba(255,255,255,0.2)', borderRight: 'none', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.2), -2px 0 8px rgba(0,0,0,0.5)' }} />
       {/* Volume Down */}
-      <div style={{ position: 'absolute', width: '4px', height: '62px', top: '232px', left: '-4px', background: 'linear-gradient(90deg,#141414,#303030)', borderRadius: '3px 0 0 3px', boxShadow: '-1px 0 3px rgba(0,0,0,0.6)' }} />
+      <div style={{ position: 'absolute', width: '4px', height: '62px', top: '232px', left: '-4px', background: 'linear-gradient(180deg,rgba(130,130,130,0.85) 0%,rgba(70,70,70,0.75) 100%)', borderRadius: '3px 0 0 3px', border: '0.5px solid rgba(255,255,255,0.2)', borderRight: 'none', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.2), -2px 0 8px rgba(0,0,0,0.5)' }} />
       {/* Power */}
-      <div style={{ position: 'absolute', width: '4px', height: '88px', top: '158px', right: '-4px', background: 'linear-gradient(90deg,#303030,#141414)', borderRadius: '0 3px 3px 0', boxShadow: '1px 0 3px rgba(0,0,0,0.6)' }} />
+      <div style={{ position: 'absolute', width: '4px', height: '88px', top: '158px', right: '-4px', background: 'linear-gradient(180deg,rgba(130,130,130,0.85) 0%,rgba(70,70,70,0.75) 100%)', borderRadius: '0 3px 3px 0', border: '0.5px solid rgba(255,255,255,0.2)', borderLeft: 'none', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.2), 2px 0 8px rgba(0,0,0,0.5)' }} />
 
       {/* Body */}
       <div style={{
         background: 'linear-gradient(155deg,#3C3C3C 0%,#222 25%,#141414 55%,#1E1E1E 80%,#2A2A2A 100%)',
-        borderRadius: '52px',
-        padding: '16px 12px 18px',
+        borderRadius: '46px',
+        padding: '14px 10px 15px',
         boxShadow: [
           'inset 0 1.5px 0 rgba(255,255,255,0.14)',
           'inset 1px 0 0 rgba(255,255,255,0.07)',
@@ -402,13 +403,13 @@ function IPhoneFrame({ children }: { children: ReactNode }) {
           '0 5px 14px rgba(0,0,0,0.35)',
         ].join(', '),
       }}>
-        {/* Screen */}
-        <div style={{ borderRadius: '40px', overflow: 'hidden', background: '#000' }}>
+        {/* Screen — fixed height prevents any resize during animation */}
+        <div style={{ borderRadius: '36px', overflow: 'hidden', background: '#000', height: '630px', display: 'flex', flexDirection: 'column' }}>
           {/* iOS Status Bar with Dynamic Island */}
-          <div style={{ height: '52px', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', position: 'relative' }}>
+          <div style={{ height: '52px', background: '#111', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', position: 'relative' }}>
             <span style={{ fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif', fontWeight: 600, fontSize: '15px', color: '#FFF', letterSpacing: '-0.3px' }}>10:41</span>
             {/* Dynamic Island pill */}
-            <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: '10px', width: '112px', height: '32px', background: '#000', borderRadius: '18px', boxShadow: '0 0 0 1.5px rgba(255,255,255,0.1)' }} />
+            <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', top: '9px', width: '100px', height: '32px', background: '#000', borderRadius: '18px', boxShadow: '0 0 0 1px rgba(255,255,255,0.22), 0 3px 10px rgba(0,0,0,0.9)' }} />
             {/* Status icons */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <svg width="17" height="11" viewBox="0 0 17 11" fill="white">
@@ -464,8 +465,8 @@ export default function FlowDiagram() {
             {NODES.map((node, i) => (
               <div key={node.id}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', flexShrink: 0, background: node.highlight ? '#00B4CC' : 'rgba(26,58,122,0.07)', border: node.highlight ? 'none' : '1.5px solid rgba(26,58,122,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', boxShadow: node.highlight ? '0 8px 24px rgba(0,180,204,0.35)' : 'none' }}>
-                    {node.emoji}
+                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', flexShrink: 0, background: node.highlight ? '#0D1F42' : 'rgba(26,58,122,0.07)', border: node.highlight ? 'none' : '1.5px solid rgba(26,58,122,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', boxShadow: node.highlight ? '0 8px 24px rgba(13,31,66,0.4)' : 'none', overflow: 'hidden', padding: node.highlight ? '7px' : '0' }}>
+                    {node.highlight ? <LogoSVG light /> : node.emoji}
                   </div>
                   <div style={{ paddingTop: '4px' }}>
                     <h3 style={{ fontFamily: 'var(--font-outfit-var)', fontWeight: 700, fontSize: '1.05rem', color: '#0F172A', margin: '0 0 6px' }}>{node.title}</h3>
