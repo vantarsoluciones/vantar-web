@@ -24,7 +24,7 @@ const CASES = [
 
 export default function Results() {
   return (
-    <section id="resultados" style={{ padding: '112px 32px', background: '#F8FAFC' }}>
+    <section id="resultados" style={{ padding: '112px 32px', background: '#030A15' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '64px' }}>
@@ -47,7 +47,7 @@ export default function Results() {
               fontFamily: 'var(--font-outfit-var)',
               fontWeight: 800,
               fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
-              color: '#0F172A',
+              color: '#F0F6FF',
               margin: 0,
               letterSpacing: '-0.02em',
               lineHeight: 1.15,
@@ -65,10 +65,10 @@ export default function Results() {
             <div
               key={c.name}
               style={{
-                background: '#FFFFFF',
+                background: '#071020',
                 borderRadius: '16px',
                 padding: '36px 32px',
-                border: '1px solid rgba(0,0,0,0.06)',
+                border: '1px solid rgba(0,180,204,0.1)',
                 borderLeft: '4px solid #00B4CC',
                 display: 'flex',
                 flexDirection: 'column',
@@ -92,7 +92,7 @@ export default function Results() {
                 style={{
                   fontFamily: 'var(--font-inter-var)',
                   fontSize: '0.9rem',
-                  color: '#374151',
+                  color: 'rgba(240,246,255,0.78)',
                   lineHeight: 1.75,
                   margin: 0,
                   flexGrow: 1,
@@ -102,13 +102,13 @@ export default function Results() {
                 {c.quote}
               </p>
 
-              <div style={{ borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '20px' }}>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '20px' }}>
                 <p
                   style={{
                     fontFamily: 'var(--font-outfit-var)',
                     fontWeight: 700,
                     fontSize: '0.95rem',
-                    color: '#0F172A',
+                    color: '#F0F6FF',
                     margin: '0 0 4px',
                   }}
                 >
@@ -118,7 +118,7 @@ export default function Results() {
                   style={{
                     fontFamily: 'var(--font-inter-var)',
                     fontSize: '0.8rem',
-                    color: '#6B7280',
+                    color: '#7A9BB5',
                     margin: 0,
                   }}
                 >

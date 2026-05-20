@@ -7,9 +7,9 @@
   --color-teal-light: #4DD9ED;
   --color-teal-soft: #E0F7FA;
   --color-gray-muted: #6B7280;
-  --color-bg: #F8FAFC;
-  --color-text: #0F172A;
-  --color-text-secondary: #475569;
+  --color-bg: #030A15;
+  --color-text: #F0F6FF;
+  --color-text-secondary: #7A9BB5;
 }
 
 *, *::before, *::after {
@@ -22,8 +22,8 @@ html {
 
 body {
   font-family: var(--font-inter-var), system-ui, -apple-system, sans-serif;
-  background-color: #F8FAFC;
-  color: #0F172A;
+  background-color: #030A15;
+  color: #F0F6FF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

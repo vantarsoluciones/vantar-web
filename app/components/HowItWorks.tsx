@@ -18,7 +18,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section style={{ padding: '112px 32px', background: '#E0F7FA' }}>
+    <section style={{ padding: '112px 32px', background: '#0D1930' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '72px' }}>
@@ -41,7 +41,7 @@ export default function HowItWorks() {
               fontFamily: 'var(--font-outfit-var)',
               fontWeight: 800,
               fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
-              color: '#0F172A',
+              color: '#F0F6FF',
               margin: 0,
               letterSpacing: '-0.02em',
               lineHeight: 1.15,
@@ -93,7 +93,7 @@ export default function HowItWorks() {
                   fontFamily: 'var(--font-outfit-var)',
                   fontWeight: 700,
                   fontSize: '1.2rem',
-                  color: '#0F172A',
+                  color: '#F0F6FF',
                   margin: '0 0 14px',
                   lineHeight: 1.3,
                 }}
@@ -104,7 +104,7 @@ export default function HowItWorks() {
                 style={{
                   fontFamily: 'var(--font-inter-var)',
                   fontSize: '0.9rem',
-                  color: '#475569',
+                  color: '#7A9BB5',
                   margin: 0,
                   lineHeight: 1.7,
                 }}

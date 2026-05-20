@@ -22,7 +22,7 @@ function CheckIcon() {
 
 export default function Offering() {
   return (
-    <section style={{ padding: '112px 32px', background: '#FFFFFF' }}>
+    <section style={{ padding: '112px 32px', background: '#071020' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '64px' }}>
@@ -45,7 +45,7 @@ export default function Offering() {
               fontFamily: 'var(--font-outfit-var)',
               fontWeight: 800,
               fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
-              color: '#0F172A',
+              color: '#F0F6FF',
               margin: 0,
               letterSpacing: '-0.02em',
               lineHeight: 1.15,
@@ -61,7 +61,7 @@ export default function Offering() {
           {/* Card 1: Agent */}
           <div
             style={{
-              background: '#0D1F42',
+              background: '#0D1930',
               borderRadius: '20px',
               padding: '44px 40px',
               position: 'relative',
@@ -133,10 +133,10 @@ export default function Offering() {
           {/* Card 2: Ads */}
           <div
             style={{
-              background: '#F8FAFC',
+              background: '#030A15',
               borderRadius: '20px',
               padding: '44px 40px',
-              border: '1.5px solid rgba(0,0,0,0.07)',
+              border: '1.5px solid rgba(0,180,204,0.12)',
             }}
           >
             <div
@@ -144,8 +144,8 @@ export default function Offering() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'rgba(26,58,122,0.07)',
-                border: '1px solid rgba(26,58,122,0.14)',
+                background: 'rgba(0,180,204,0.08)',
+                border: '1px solid rgba(0,180,204,0.18)',
                 borderRadius: '100px',
                 padding: '6px 14px',
                 marginBottom: '28px',
@@ -159,7 +159,7 @@ export default function Offering() {
                   fontWeight: 600,
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
-                  color: '#1A3A7A',
+                  color: '#00B4CC',
                 }}
               >
                 Campaña publicitaria
@@ -169,14 +169,14 @@ export default function Offering() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {ADS_FEATURES.map((f) => (
                 <li key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ color: '#1A3A7A', flexShrink: 0, marginTop: '2px' }}>
+                  <span style={{ color: '#00B4CC', flexShrink: 0, marginTop: '2px' }}>
                     <CheckIcon />
                   </span>
                   <span
                     style={{
                       fontFamily: 'var(--font-inter-var)',
                       fontSize: '0.9rem',
-                      color: '#475569',
+                      color: 'rgba(240,246,255,0.7)',
                       lineHeight: 1.6,
                     }}
                   >

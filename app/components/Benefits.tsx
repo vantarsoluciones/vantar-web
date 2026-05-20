@@ -44,7 +44,7 @@ const BENEFITS: { icon: ReactNode; title: string; desc: string }[] = [
 
 export default function Benefits() {
   return (
-    <section id="beneficios" style={{ padding: '112px 32px', background: '#F8FAFC' }}>
+    <section id="beneficios" style={{ padding: '112px 32px', background: '#030A15' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '64px' }}>
@@ -67,7 +67,7 @@ export default function Benefits() {
               fontFamily: 'var(--font-outfit-var)',
               fontWeight: 800,
               fontSize: 'clamp(1.8rem, 3vw, 2.6rem)',
-              color: '#0F172A',
+              color: '#F0F6FF',
               margin: 0,
               letterSpacing: '-0.02em',
               lineHeight: 1.15,
@@ -84,10 +84,10 @@ export default function Benefits() {
               key={b.title}
               className="card-hover"
               style={{
-                background: '#FFFFFF',
+                background: '#071020',
                 borderRadius: '16px',
                 padding: '36px 32px',
-                border: '1px solid rgba(0,0,0,0.06)',
+                border: '1px solid rgba(0,180,204,0.1)',
                 animation: `fade-up 0.55s ease ${0.1 + i * 0.1}s both`,
               }}
             >
@@ -113,7 +113,7 @@ export default function Benefits() {
                   fontFamily: 'var(--font-outfit-var)',
                   fontWeight: 700,
                   fontSize: '1.1rem',
-                  color: '#0F172A',
+                  color: '#F0F6FF',
                   margin: '0 0 12px',
                   lineHeight: 1.3,
                 }}
@@ -124,7 +124,7 @@ export default function Benefits() {
                 style={{
                   fontFamily: 'var(--font-inter-var)',
                   fontSize: '0.9rem',
-                  color: '#475569',
+                  color: '#7A9BB5',
                   margin: 0,
                   lineHeight: 1.7,
                 }}

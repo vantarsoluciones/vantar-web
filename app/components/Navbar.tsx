@@ -38,10 +38,10 @@ export default function Navbar() {
         transition: 'background 0.35s ease, box-shadow 0.35s ease',
         ...(scrolled
           ? {
-              background: 'rgba(255, 255, 255, 0.88)',
+              background: 'rgba(3, 10, 21, 0.92)',
               backdropFilter: 'blur(14px)',
               WebkitBackdropFilter: 'blur(14px)',
-              boxShadow: '0 1px 0 rgba(0,0,0,0.07)',
+              boxShadow: '0 1px 0 rgba(0,180,204,0.1)',
             }
           : {
               background: 'transparent',
@@ -50,13 +50,13 @@ export default function Navbar() {
     >
       {/* Logo + brand */}
       <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-        <LogoSVG light={!scrolled} />
+        <LogoSVG light />
         <span
           style={{
             fontFamily: 'var(--font-outfit-var)',
             fontWeight: 700,
             fontSize: '1.25rem',
-            color: scrolled ? '#1A3A7A' : '#FFFFFF',
+            color: '#FFFFFF',
             letterSpacing: '-0.01em',
             transition: 'color 0.35s ease',
           }}
@@ -76,16 +76,12 @@ export default function Navbar() {
                 fontFamily: 'var(--font-inter-var)',
                 fontSize: '14px',
                 fontWeight: 400,
-                color: scrolled ? '#475569' : 'rgba(255,255,255,0.82)',
+                color: 'rgba(255,255,255,0.72)',
                 textDecoration: 'none',
                 transition: 'color 0.2s ease',
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = scrolled ? '#1A3A7A' : '#FFFFFF')
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = scrolled ? '#475569' : 'rgba(255,255,255,0.82)')
-              }
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#FFFFFF')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.72)')}
             >
               {l.label}
             </a>

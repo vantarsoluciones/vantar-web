@@ -446,16 +446,16 @@ function IPhoneFrame({ children }: { children: ReactNode }) {
 // ── Section ────────────────────────────────────────────────────────────────────
 export default function FlowDiagram() {
   return (
-    <section id="como-funciona" style={{ padding: '112px 32px', background: '#FFFFFF' }}>
+    <section id="como-funciona" style={{ padding: '112px 32px', background: '#071020' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span style={{ fontFamily: 'var(--font-outfit-var)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#00B4CC', display: 'block', marginBottom: '16px' }}>
             Cómo funciona
           </span>
-          <h2 style={{ fontFamily: 'var(--font-outfit-var)', fontWeight: 800, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#0F172A', margin: '0 0 20px', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontFamily: 'var(--font-outfit-var)', fontWeight: 800, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#F0F6FF', margin: '0 0 20px', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
             De la consulta al turno,<br/>sin que intervengas
           </h2>
-          <p style={{ fontFamily: 'var(--font-inter-var)', fontSize: '1.1rem', color: '#475569', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontFamily: 'var(--font-inter-var)', fontSize: '1.1rem', color: '#7A9BB5', maxWidth: '520px', margin: '0 auto', lineHeight: 1.7 }}>
             Todo ocurre automáticamente. Vos solo aparecés cuando el cliente ya está listo para cerrar el caso.
           </p>
         </div>
@@ -465,12 +465,12 @@ export default function FlowDiagram() {
             {NODES.map((node, i) => (
               <div key={node.id}>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '20px' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', flexShrink: 0, background: node.highlight ? '#0D1F42' : 'rgba(26,58,122,0.07)', border: node.highlight ? 'none' : '1.5px solid rgba(26,58,122,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', boxShadow: node.highlight ? '0 8px 24px rgba(13,31,66,0.4)' : 'none', overflow: 'hidden', padding: node.highlight ? '7px' : '0' }}>
+                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', flexShrink: 0, background: node.highlight ? '#0D1930' : 'rgba(0,180,204,0.07)', border: node.highlight ? '1px solid rgba(0,180,204,0.25)' : '1.5px solid rgba(0,180,204,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', boxShadow: node.highlight ? '0 8px 24px rgba(0,180,204,0.2)' : 'none', overflow: 'hidden', padding: node.highlight ? '7px' : '0' }}>
                     {node.highlight ? <LogoSVG light /> : node.emoji}
                   </div>
                   <div style={{ paddingTop: '4px' }}>
-                    <h3 style={{ fontFamily: 'var(--font-outfit-var)', fontWeight: 700, fontSize: '1.05rem', color: '#0F172A', margin: '0 0 6px' }}>{node.title}</h3>
-                    <p style={{ fontFamily: 'var(--font-inter-var)', fontSize: '0.875rem', color: '#475569', margin: 0, lineHeight: 1.65 }}>{node.desc}</p>
+                    <h3 style={{ fontFamily: 'var(--font-outfit-var)', fontWeight: 700, fontSize: '1.05rem', color: '#F0F6FF', margin: '0 0 6px' }}>{node.title}</h3>
+                    <p style={{ fontFamily: 'var(--font-inter-var)', fontSize: '0.875rem', color: '#7A9BB5', margin: 0, lineHeight: 1.65 }}>{node.desc}</p>
                   </div>
                 </div>
                 {i < NODES.length - 1 && <FlowConnector delay={i * 0.4} />}
